@@ -1,8 +1,9 @@
 import { create } from 'zustand';
+import { createStore } from 'zustand';
 
-import { appSlice } from './appSlice';
-import { userSlice } from './userSlice';
-import { adminSlice } from './adminSlice';
+import { AppState, appSlice } from './appSlice';
+import { User, userSlice } from './userSlice';
+import { AdminSlice, adminSlice } from './adminSlice';
 
 const store = (set) => ({
   ...appSlice(set),
