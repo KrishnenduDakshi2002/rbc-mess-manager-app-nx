@@ -3,8 +3,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - '/apps/rbc-mess-api/**'
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -32,9 +30,6 @@ jobs:
       - name: Display AWS configurations
         run: cat ~/.aws/config
 
-      - name: Run AWS cli for S3
-        run: aws s3 ls --profile rbc-mess-app-profile
-
       - name: Getting the encrypted key
         run: |
           aws s3 cp --profile rbc-mess-app-profile  s3://artifacts-secrets-bucket/instance-key.pem.enc .
@@ -48,4 +43,4 @@ jobs:
           ssh-keyscan -H ${{secrets.EC2_HOST_IP}} >> ~/.ssh/known_hosts
 
       - name: Deploying the code to EC2
-        run: ssh -i instance-key.pem ubuntu@${{secrets.EC2_HOST_IP}} "echo 'Running on EC2 && cd api/ && ls"
+        run: ssh -i instance-key.pem ubuntu@${{secrets.EC2_HOST_IP}} "echo 'Running on EC2' && cd api/ && ls"
