@@ -1,0 +1,51 @@
+name: Deployment CI/CD for RBC mess API
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '/apps/rbc-mess-api/**'
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Setup AWS CLI
+        run: |
+          mkdir -p ~/.aws
+          echo "[profile rbc-mess-app-profile]" >> ~/.aws/config
+          echo "aws_access_key_id=${{secrets.USER_ACCESS_KEY}}" >> ~/.aws/config
+          echo "aws_secret_access_key=${{secrets.USER_SECRET_KEY}}" >> ~/.aws/config
+          echo "region=ap-south-1" >> ~/.aws/config
+
+      - name: Display AWS configurations
+        run: cat ~/.aws/config
+
+      - name: Run AWS cli for S3
+        run: aws s3 ls --profile rbc-mess-app-profile
+
+      - name: Getting the encrypted key
+        run: |
+          aws s3 cp --profile rbc-mess-app-profile  s3://artifacts-secrets-bucket/instance-key.pem.enc .
+          openssl aes-256-cbc -d -in instance-key.pem.enc -out instance-key.pem -k ${{secrets.PEM_DECRYPT_PASSPHRASE}}
+          chmod 400 instance-key.pem
+
+      - name: Create .ssh file
+        run: mkdir -p ~/.ssh
+      - name: Getting the EC2 host IP
+        run: |
+          ssh-keyscan -H ${{secrets.EC2_HOST_IP}} >> ~/.ssh/known_hosts
+
+      - name: Deploying the code to EC2
+        run: ssh -i instance-key.pem ubuntu@${{secrets.EC2_HOST_IP}} "echo 'Running on EC2 && cd api/ && ls"
