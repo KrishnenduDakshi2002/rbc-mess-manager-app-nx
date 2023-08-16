@@ -1,0 +1,64 @@
+{
+  "name": "rbc-mess-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/rbc-mess-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/rbc-mess-api",
+        "main": "apps/rbc-mess-api/src/main.ts",
+        "tsConfig": "apps/rbc-mess-api/tsconfig.app.json",
+        "assets": ["apps/rbc-mess-api/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/rbc-mess-api/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "rbc-mess-api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "rbc-mess-api:build:development"
+        },
+        "production": {
+          "buildTarget": "rbc-mess-api:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/rbc-mess-api/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/rbc-mess-api/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}
