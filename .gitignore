@@ -115,3 +115,4 @@ apps/rbc-mess-manager-e2e/artifacts
 
 env.config.json
 .env
+ecosystem.config.js
