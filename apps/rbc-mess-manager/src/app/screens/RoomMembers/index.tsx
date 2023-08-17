@@ -4,6 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { theme } from '../../global/themes';
 
+// import { useRoute } from '@react-navigation/native';
+
 const RoomMembers = () => {
   return (
     <SafeAreaView

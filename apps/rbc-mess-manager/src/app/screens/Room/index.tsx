@@ -65,7 +65,10 @@ const RoomScreen = () => {
               }}
               onPress={() => {
                 console.log('RoomScreen: ', item.name);
-                navigation.navigate('RoomMembers');
+                navigation.navigate('RoomMembers', {
+                  roomId: item.id,
+                  roomNumber: item.name,
+                });
               }}
             >
               <Text
