@@ -112,3 +112,5 @@ yarn-error.log
 
 
 apps/rbc-mess-manager-e2e/artifacts
+
+env.config.json
