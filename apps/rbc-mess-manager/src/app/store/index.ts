@@ -6,7 +6,7 @@ import { User, userSlice } from './userSlice';
 import { AdminSlice, adminSlice } from './adminSlice';
 
 const store = (set) => ({
-  ...appSlice(set),
-  ...userSlice(set),
-  ...adminSlice(set),
+  // ...appSlice(set),
+  // ...userSlice(set),
+  // ...adminSlice(set),
 });
