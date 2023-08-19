@@ -22,6 +22,8 @@ const HomeScreen = () => {
         }}
       >
         <Text>Home Screen</Text>
+
+
       </View>
     </SafeAreaView>
   );
