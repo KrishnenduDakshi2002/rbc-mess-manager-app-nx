@@ -7,7 +7,16 @@
     "moduleResolution": "node",
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "declaration": true
+    "declaration": true,
+    "baseUrl": "./",
+    "paths": {
+      "@components/*": ["src/app/components/*"],
+      "@screens/*": ["src/app/screens/*"],
+      "@utils/*": ["src/app/utils/*"],
+      "@store/*": ["src/app/store/*"],
+      "@assets/*": ["src/assets/*"],
+      "@navigation/*": ["src/app/navigation/*"]
+    }
   },
   "files": [],
   "include": [],
