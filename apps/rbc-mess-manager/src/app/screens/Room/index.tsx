@@ -1,3 +1,9 @@
+import CustomScreen from '@components/CustomScreen';
+import { THEME } from '@global/themes';
+import { RoomScreenNavigationProp } from '@global/types/navigation.type';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import { useNavigation } from '@react-navigation/native';
+import { SCREENS } from '@utils/screens';
 import React from 'react';
 import {
   FlatList,
@@ -7,18 +13,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-
 import { roomData } from '../../data/roomData';
-
-import CustomScreen from '@components/CustomScreen';
-import { THEME } from '@global/themes';
-import { RoomScreenNavigationProp } from '@global/types/navigation.type';
-import { useNavigation } from '@react-navigation/native';
-import { SCREENS } from '@utils/screens';
 
 const RoomScreen = () => {
   const navigation = useNavigation<RoomScreenNavigationProp>();
+  const bottomTabHeight = useBottomTabBarHeight();
   return (
     <CustomScreen>
       <View
@@ -27,17 +26,17 @@ const RoomScreen = () => {
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: THEME.COLORS.Background,
-          paddingTop: 10,
-          marginBottom: 80,
         }}
       >
         <FlatList
+          contentContainerStyle={{
+            paddingBottom: bottomTabHeight + 20,
+          }}
           style={{
             flex: 1,
-            width: '90%',
+            width: '100%',
             backgroundColor: THEME.COLORS.Background,
-            // borderColor: 'red',
-            // borderWidth: 1,
+            paddingHorizontal: 20,
           }}
           data={roomData}
           renderItem={({ item }) => (
@@ -48,7 +47,7 @@ const RoomScreen = () => {
                 borderRadius: 10,
                 width: '100%',
                 backgroundColor: THEME.COLORS.Background,
-                borderColor: THEME.COLORS.Textprimary,
+                borderColor: THEME.COLORS.Textsecondary,
                 borderWidth: 1,
                 justifyContent: 'flex-start',
                 alignItems: 'baseline',
@@ -63,8 +62,8 @@ const RoomScreen = () => {
             >
               <Text
                 style={{
-                  color: THEME.COLORS.Textprimary,
-                  fontSize: 20,
+                  color: THEME.COLORS.Textsecondary,
+                  fontSize: 15,
                 }}
               >
                 {item.roomId}

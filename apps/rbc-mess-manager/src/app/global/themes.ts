@@ -1,6 +1,6 @@
 const PALETTE = {
   bg__dark: '#171B26',
-  bg__light: '#1F2738',
+  bg__light: '#242D41',
   text__light: '#ffffff',
   text__dark: '#6A7083',
   primary__light: '#27A691',

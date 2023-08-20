@@ -23,9 +23,9 @@ export const HomeTabNavigator = () => {
         tabBarStyle: {
           borderRadius: 20,
           borderTopColor: 'transparent',
-          height: 80,
+          height: 65,
           position: 'absolute',
-          marginHorizontal: 20,
+          marginHorizontal: 40,
           bottom: Platform.OS === 'ios' ? insets.bottom : 20,
           backgroundColor: THEME.COLORS.Foreground,
           elevation: 20,
@@ -96,25 +96,12 @@ function CustomTabIcon({ children, focused }) {
           ? THEME.COLORS.Primarylight
           : THEME.COLORS.Foreground,
         borderRadius: 50,
-        padding: 10,
-        position: 'relative',
+        padding: 12,
         justifyContent: 'center',
         alignItems: 'center',
       }}
     >
       {children}
-      {focused && (
-        <View
-          style={{
-            position: 'absolute',
-            backgroundColor: 'grey',
-            borderRadius: 50,
-            width: 5,
-            height: 5,
-            bottom: -10,
-          }}
-        ></View>
-      )}
     </View>
   );
 }
