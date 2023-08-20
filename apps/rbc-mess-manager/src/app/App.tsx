@@ -1,12 +1,15 @@
 import RootStackNavigator from '@navigation/RootStackNavigator';
 import React from 'react';
 import { Provider as PaperProvider } from 'react-native-paper';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const App = () => {
   return (
-    <PaperProvider>
-      <RootStackNavigator />
-    </PaperProvider>
+    <SafeAreaProvider>
+      <PaperProvider>
+        <RootStackNavigator />
+      </PaperProvider>
+    </SafeAreaProvider>
   );
 };
 

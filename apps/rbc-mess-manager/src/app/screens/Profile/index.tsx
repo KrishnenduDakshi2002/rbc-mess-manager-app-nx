@@ -5,22 +5,15 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import img from '@assets/images/dp.png';
+import CustomScreen from '@components/CustomScreen';
 import { THEME } from '@global/themes';
 
 const ProfileScreen = () => {
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        height: '100%',
-        width: '100%',
-      }}
-    >
+    <CustomScreen>
       <View
         style={{
-          flex: 1,
           height: '100%',
-          width: '100%',
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: THEME.COLORS.Background,
@@ -75,7 +68,7 @@ const ProfileScreen = () => {
           </View>
         </View>
       </View>
-    </SafeAreaView>
+    </CustomScreen>
   );
 };
 

@@ -11,6 +11,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { roomData } from '../../data/roomData';
 
+import CustomScreen from '@components/CustomScreen';
 import { THEME } from '@global/themes';
 import { RoomScreenNavigationProp } from '@global/types/navigation.type';
 import { useNavigation } from '@react-navigation/native';
@@ -19,19 +20,10 @@ import { SCREENS } from '@utils/screens';
 const RoomScreen = () => {
   const navigation = useNavigation<RoomScreenNavigationProp>();
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        height: '100%',
-        width: '100%',
-        backgroundColor: THEME.COLORS.Background,
-      }}
-    >
+    <CustomScreen>
       <View
         style={{
-          flex: 1,
           height: '100%',
-          width: '100%',
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: THEME.COLORS.Background,
@@ -82,7 +74,7 @@ const RoomScreen = () => {
           keyExtractor={(item) => item.id.toString()}
         />
       </View>
-    </SafeAreaView>
+    </CustomScreen>
   );
 };
 

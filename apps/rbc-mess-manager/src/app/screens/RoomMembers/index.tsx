@@ -1,3 +1,4 @@
+import CustomScreen from '@components/CustomScreen';
 import { THEME } from '@global/themes';
 import { RoomScreenScreenProps } from '@global/types/navigation.type';
 import React from 'react';
@@ -10,16 +11,10 @@ import { getRoomData } from 'src/app/data/roomData';
 const RoomMembers = ({ route, navigation }: RoomScreenScreenProps) => {
   const { members } = getRoomData(route.params && route.params.roomId);
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-      }}
-    >
+    <CustomScreen>
       <View
         style={{
-          flex: 1,
           height: '100%',
-          width: '100%',
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: THEME.COLORS.Background,
@@ -35,7 +30,7 @@ const RoomMembers = ({ route, navigation }: RoomScreenScreenProps) => {
         {members.length > 0 &&
           members.map((member) => <Text id={member.id}>{member.name}</Text>)}
       </View>
-    </SafeAreaView>
+    </CustomScreen>
   );
 };
 
