@@ -3,6 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "start:app": "nx serve rbc-mess-manager",
+    "start:ios": "nx run-ios rbc-mess-manager",
+    "start:android": "nx run-android rbc-mess-manager",
+    "build:android": "nx build-android rbc-mess-manager",
+    "build:ios": "nx build-ios rbc-mess-manager",
     "start:api": "nx serve rbc-mess-api",
     "build:api": "nx build rbc-mess-api"
   },
