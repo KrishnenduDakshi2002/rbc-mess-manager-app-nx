@@ -6,35 +6,44 @@ import MessScreen from '@screens/Mess';
 import ProfileScreen from '@screens/Profile';
 import RoomScreen from '@screens/Room';
 import { SCREENS } from '@utils/screens';
+import { Platform, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 const Tab = createBottomTabNavigator<RootTabParamList>();
 export const HomeTabNavigator = () => {
+  const insets = useSafeAreaInsets();
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarStyle: {
-          borderWidth: 0,
-          borderColor: 'transparent',
-          borderRadius: 14,
-          height: 65,
+          borderRadius: 20,
+          borderTopColor: 'transparent',
+          height: 80,
           position: 'absolute',
-          margin: 10,
+          marginHorizontal: 20,
+          bottom: Platform.OS === 'ios' ? insets.bottom : 20,
           backgroundColor: THEME.COLORS.Foreground,
+          elevation: 20,
+          alignItems: 'center',
+          paddingBottom: 'auto', // for ios to make it vertically center
         },
         tabBarShowLabel: false,
-        tabBarActiveTintColor: 'white',
-        tabBarInactiveTintColor: 'gray',
+        tabBarActiveTintColor: THEME.COLORS.Primarydark,
       })}
     >
       <Tab.Screen
         name={SCREENS.MESS_SCREEN}
         component={MessScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="kitchen" color={color} size={size} />
+          tabBarIcon: ({ color, size, focused }) => (
+            <CustomTabIcon focused={focused}>
+              <FontAwesome name="book" color={color} size={size} />
+            </CustomTabIcon>
           ),
         }}
       />
@@ -43,8 +52,10 @@ export const HomeTabNavigator = () => {
         name={SCREENS.DASHBOARD_SCREEN}
         component={HomeScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" color={color} size={size} />
+          tabBarIcon: ({ color, size, focused }) => (
+            <CustomTabIcon focused={focused}>
+              <MaterialIcons name="kitchen" color={color} size={size} />
+            </CustomTabIcon>
           ),
           headerShown: false,
         }}
@@ -54,8 +65,10 @@ export const HomeTabNavigator = () => {
         name={SCREENS.ROOMS_SCREEN}
         component={RoomScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="home-max" color={color} size={size} />
+          tabBarIcon: ({ color, size, focused }) => (
+            <CustomTabIcon focused={focused}>
+              <FontAwesome5 name="key" color={color} size={size} />
+            </CustomTabIcon>
           ),
         }}
       />
@@ -64,13 +77,46 @@ export const HomeTabNavigator = () => {
         name={SCREENS.PROFILE_SCREEN}
         component={ProfileScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person" color={color} size={size} />
+          tabBarIcon: ({ color, size, focused }) => (
+            <CustomTabIcon focused={focused}>
+              <Ionicons name="person" color={color} size={size} />
+            </CustomTabIcon>
           ),
         }}
       />
     </Tab.Navigator>
   );
 };
+
+function CustomTabIcon({ children, focused }) {
+  return (
+    <View
+      style={{
+        backgroundColor: focused
+          ? THEME.COLORS.Primarylight
+          : THEME.COLORS.Foreground,
+        borderRadius: 50,
+        padding: 10,
+        position: 'relative',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      {children}
+      {focused && (
+        <View
+          style={{
+            position: 'absolute',
+            backgroundColor: 'grey',
+            borderRadius: 50,
+            width: 5,
+            height: 5,
+            bottom: -10,
+          }}
+        ></View>
+      )}
+    </View>
+  );
+}
 
 export default HomeTabNavigator;
