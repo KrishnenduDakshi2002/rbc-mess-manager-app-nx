@@ -1,4 +1,4 @@
-const palette = {
+const PALETTE = {
   bg__dark: '#162643',
   bg__light: '#243350',
   text__light: '#ffffff',
@@ -7,17 +7,17 @@ const palette = {
   primary__dark: '#0D453C',
 };
 
-export const theme = {
-  colors: {
-    background: palette.bg__dark,
-    foreground: palette.bg__light,
-    textprimary: palette.text__light,
-    textsecondary: palette.text__dark,
-    primarylight: palette.primary__light,
-    primarydark: palette.primary__dark,
+export const THEME = {
+  COLORS: {
+    Background: PALETTE.bg__dark,
+    Foreground: PALETTE.bg__light,
+    Textprimary: PALETTE.text__light,
+    Textsecondary: PALETTE.text__dark,
+    Primarylight: PALETTE.primary__light,
+    Primarydark: PALETTE.primary__dark,
   },
 
-  spacing: {
+  SIZE: {
     sm: 8,
     md: 16,
     lg: 24,

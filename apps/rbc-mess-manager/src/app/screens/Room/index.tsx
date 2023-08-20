@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   FlatList,
   ScrollView,
@@ -6,25 +7,24 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-import { theme } from '../../global/themes';
 
 import { roomData } from '../../data/roomData';
 
+import { THEME } from '@global/themes';
+import { RoomScreenNavigationProp } from '@global/types/navigation.type';
 import { useNavigation } from '@react-navigation/native';
+import { SCREENS } from '@utils/screens';
 
 const RoomScreen = () => {
-  const navigation = useNavigation();
-
+  const navigation = useNavigation<RoomScreenNavigationProp>();
   return (
     <SafeAreaView
       style={{
         flex: 1,
         height: '100%',
         width: '100%',
-        backgroundColor: theme.colors.background,
+        backgroundColor: THEME.COLORS.Background,
       }}
     >
       <View
@@ -34,7 +34,7 @@ const RoomScreen = () => {
           width: '100%',
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: theme.colors.background,
+          backgroundColor: THEME.COLORS.Background,
           paddingTop: 10,
           marginBottom: 80,
         }}
@@ -43,7 +43,7 @@ const RoomScreen = () => {
           style={{
             flex: 1,
             width: '90%',
-            backgroundColor: theme.colors.background,
+            backgroundColor: THEME.COLORS.Background,
             // borderColor: 'red',
             // borderWidth: 1,
           }}
@@ -55,8 +55,8 @@ const RoomScreen = () => {
                 height: 80,
                 borderRadius: 10,
                 width: '100%',
-                backgroundColor: theme.colors.foreground,
-                borderColor: theme.colors.textprimary,
+                backgroundColor: THEME.COLORS.Background,
+                borderColor: THEME.COLORS.Textprimary,
                 borderWidth: 1,
                 justifyContent: 'flex-start',
                 alignItems: 'baseline',
@@ -64,24 +64,22 @@ const RoomScreen = () => {
                 marginBottom: 10,
               }}
               onPress={() => {
-                console.log('RoomScreen: ', item.name);
-                navigation.navigate('RoomMembers', {
-                  roomId: item.id,
-                  roomNumber: item.name,
+                navigation.navigate(SCREENS.ROOM_SCREEN, {
+                  roomId: item.roomId,
                 });
               }}
             >
               <Text
                 style={{
-                  color: theme.colors.textprimary,
+                  color: THEME.COLORS.Textprimary,
                   fontSize: 20,
                 }}
               >
-                {item.name}
+                {item.roomId}
               </Text>
             </TouchableOpacity>
           )}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.id.toString()}
         />
       </View>
     </SafeAreaView>

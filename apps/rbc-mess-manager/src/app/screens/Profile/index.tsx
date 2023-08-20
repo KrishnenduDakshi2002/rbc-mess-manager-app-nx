@@ -1,12 +1,11 @@
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import React from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-import { theme } from '../../global/themes';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import img from '../../../assets/images/dp.png';
+import img from '@assets/images/dp.png';
+import { THEME } from '@global/themes';
 
 const ProfileScreen = () => {
   return (
@@ -24,7 +23,7 @@ const ProfileScreen = () => {
           width: '100%',
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: theme.colors.background,
+          backgroundColor: THEME.COLORS.Background,
         }}
       >
         <View style={styles.container}>
@@ -100,12 +99,12 @@ const styles = StyleSheet.create({
     fontSize: 25,
     marginTop: 10,
     fontWeight: 'bold',
-    color: theme.colors.textprimary,
+    color: THEME.COLORS.Textprimary,
   },
   email: {
     fontSize: 20,
     marginTop: 10,
-    color: theme.colors.textprimary,
+    color: THEME.COLORS.Textprimary,
   },
   changePassword: {
     marginTop: 10,
@@ -115,8 +114,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   changePasswordText: {
-    color: theme.colors.textsecondary,
-    borderColor: theme.colors.textprimary,
+    color: THEME.COLORS.Textsecondary,
+    borderColor: THEME.COLORS.Textsecondary,
     borderWidth: 1,
     borderRadius: 10,
     padding: 10,
@@ -132,17 +131,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 15,
-    backgroundColor: theme.colors.foreground,
+    backgroundColor: THEME.COLORS.Foreground,
     borderRadius: 15,
     marginBottom: 10,
   },
   roomLabel: {
-    color: theme.colors.textprimary,
+    color: THEME.COLORS.Textprimary,
     fontSize: 16,
     fontWeight: 'bold',
   },
   roomValue: {
-    color: theme.colors.textprimary,
+    color: THEME.COLORS.Textprimary,
     fontSize: 16,
   },
   dataBox: {

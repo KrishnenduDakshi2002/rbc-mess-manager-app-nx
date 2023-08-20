@@ -5,6 +5,7 @@
       "module-resolver",
       {
         "alias": {
+          "@global": "./src/app/global",
           "@components": "./src/app/components",
           "@screens": "./src/app/screens",
           "@utils": "./src/app/utils",

@@ -1,7 +1,6 @@
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { THEME } from '@global/themes';
 import React from 'react';
-
-import { theme } from '../../global/themes';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
 const MessScreen = () => {
   return (
@@ -17,7 +16,7 @@ const MessScreen = () => {
           width: '100%',
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: theme.colors.background,
+          backgroundColor: THEME.COLORS.Background,
         }}
       >
         <Text>Mess Screen</Text>
