@@ -11,6 +11,7 @@ const CustomScreen = ({ children }: { children: JSX.Element }) => {
     <View
       style={[
         {
+          flex: 1,
           backgroundColor: THEME.COLORS.Background,
           paddingTop: insets.top,
           paddingBottom: insets.bottom,
