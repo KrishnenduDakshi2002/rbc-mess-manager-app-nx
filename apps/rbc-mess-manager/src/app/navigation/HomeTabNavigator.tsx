@@ -57,7 +57,6 @@ export const HomeTabNavigator = () => {
               <MaterialIcons name="kitchen" color={color} size={size} />
             </CustomTabIcon>
           ),
-          headerShown: false,
         }}
       />
 

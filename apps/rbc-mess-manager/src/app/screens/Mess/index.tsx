@@ -1,22 +1,22 @@
 import CustomScreen from '@components/CustomScreen';
 import { THEME } from '@global/themes';
+import CustomHeader from '@navigation/CustomHeader';
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 const MessScreen = () => {
   return (
     <CustomScreen>
-      <View
+      <ScrollView
         style={{
           height: '100%',
           width: '100%',
-          justifyContent: 'center',
-          alignItems: 'center',
           backgroundColor: THEME.COLORS.Background,
         }}
       >
-        <Text>Mess Screen</Text>
-      </View>
+        <CustomHeader />
+        <Text>hello</Text>
+      </ScrollView>
     </CustomScreen>
   );
 };
