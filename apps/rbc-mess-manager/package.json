@@ -17,6 +17,7 @@
     "react-native-screens": "^3.24.0",
     "react-native-svg": "*",
     "react-native-vector-icons": "*",
-    "zustand": "*"
+    "zustand": "*",
+    "@faker-js/faker": "*"
   }
 }

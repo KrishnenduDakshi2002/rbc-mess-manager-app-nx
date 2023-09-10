@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
+    "@faker-js/faker": "^8.0.2",
     "@nestjs/mongoose": "^10.0.1",
     "@nestjs/schematics": "^10.0.1",
     "@nestjs/testing": "^10.0.2",
@@ -63,6 +64,7 @@
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
     "babel-jest": "^29.4.1",
+    "babel-plugin-module-resolver": "^5.0.0",
     "detox": "^20.11.1",
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",

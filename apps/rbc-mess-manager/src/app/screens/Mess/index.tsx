@@ -1,28 +1,23 @@
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import CustomScreen from '@components/CustomScreen';
+import { THEME } from '@global/themes';
 import React from 'react';
-
-import { theme } from '../../global/themes';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
 const MessScreen = () => {
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-      }}
-    >
+    <CustomScreen>
       <View
         style={{
-          flex: 1,
           height: '100%',
           width: '100%',
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: theme.colors.background,
+          backgroundColor: THEME.COLORS.Background,
         }}
       >
         <Text>Mess Screen</Text>
       </View>
-    </SafeAreaView>
+    </CustomScreen>
   );
 };
 

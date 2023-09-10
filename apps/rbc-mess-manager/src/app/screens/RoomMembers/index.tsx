@@ -1,31 +1,36 @@
-import { StyleSheet, Text, View } from 'react-native';
+import CustomScreen from '@components/CustomScreen';
+import { THEME } from '@global/themes';
+import { RoomScreenScreenProps } from '@global/types/navigation.type';
 import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-import { theme } from '../../global/themes';
+import { getRoomData } from 'src/app/data/roomData';
 
 // import { useRoute } from '@react-navigation/native';
 
-const RoomMembers = () => {
+const RoomMembers = ({ route, navigation }: RoomScreenScreenProps) => {
+  const { members } = getRoomData(route.params && route.params.roomId);
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-      }}
-    >
+    <CustomScreen>
       <View
         style={{
-          flex: 1,
           height: '100%',
-          width: '100%',
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: theme.colors.background,
+          backgroundColor: THEME.COLORS.Background,
         }}
       >
-        <Text>RoomMembers</Text>
+        <Text
+          onPress={() => {
+            navigation.goBack();
+          }}
+        >
+          Room {route.params.roomId}
+        </Text>
+        {members.length > 0 &&
+          members.map((member) => <Text id={member.id}>{member.name}</Text>)}
       </View>
-    </SafeAreaView>
+    </CustomScreen>
   );
 };
 
