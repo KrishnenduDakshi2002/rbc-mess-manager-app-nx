@@ -18,6 +18,7 @@
     "react-native-svg": "*",
     "react-native-vector-icons": "*",
     "zustand": "*",
-    "@faker-js/faker": "*"
+    "@faker-js/faker": "*",
+    "react-native-pager-view": "*"
   }
 }
