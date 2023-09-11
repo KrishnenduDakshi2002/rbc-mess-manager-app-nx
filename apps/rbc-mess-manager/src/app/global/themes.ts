@@ -1,7 +1,7 @@
 const PALETTE = {
   bg__dark: '#171B26',
   bg__light: '#242D41',
-  text__light: '#ffffff',
+  text__light: '#bfbfbf',
   text__dark: '#6A7083',
   primary__light: '#27A691',
   primary__dark: '#0D453C',

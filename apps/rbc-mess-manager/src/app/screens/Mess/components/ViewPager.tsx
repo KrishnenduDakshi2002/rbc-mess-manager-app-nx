@@ -1,11 +1,25 @@
+import FeedbackPressable from '@components/FeedbackPressable';
 import { THEME } from '@global/themes';
+import { StackNavigationProps } from '@global/types/navigation.type';
+import { useNavigation } from '@react-navigation/native';
+import { SCREENS } from '@utils/screens';
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import {
+  FlatList,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View,
+} from 'react-native';
 import PagerView from 'react-native-pager-view';
-
+import { generateMessInputData } from 'src/app/data/mess';
+import { EmptyCard, InputOutputCard } from './InputOutputCard';
+const Data = generateMessInputData();
 const ViewPager = () => {
   const ViewPagerRef = React.useRef(null);
   const [activePage, setactivePage] = useState(1);
+  const navigation = useNavigation<StackNavigationProps>();
   return (
     <View
       style={{
@@ -51,10 +65,80 @@ const ViewPager = () => {
         pageMargin={15}
       >
         <PagerViewPage key={1}>
-          <Text>First page</Text>
+          <FlatList
+            style={{
+              flex: 1,
+              width: '100%',
+            }}
+            contentContainerStyle={{
+              flexGrow: 1,
+            }}
+            showsVerticalScrollIndicator={false}
+            data={[]}
+            keyExtractor={(item) => item.id}
+            ListEmptyComponent={
+              <EmptyCard
+                title="Add today's input data"
+                onPress={() => {
+                  navigation.navigate(SCREENS.MESS_INPUT_SCREEN);
+                }}
+              />
+            }
+            ItemSeparatorComponent={() => <View style={{ height: 10 }}></View>}
+            renderItem={(item) => {
+              return (
+                <InputOutputCard
+                  roomId={item.item.roomId}
+                  shift={item.item.shift}
+                  user={item.item.user}
+                  date={item.item.date}
+                  onPress={() => {
+                    navigation.navigate(SCREENS.MESS_INPUT_DETAILS_SCREEN, {
+                      roomId: item.item.roomId,
+                    });
+                  }}
+                />
+              );
+            }}
+          />
         </PagerViewPage>
         <PagerViewPage key={2}>
-          <Text>Second page</Text>
+          <FlatList
+            style={{
+              flex: 1,
+              width: '100%',
+            }}
+            contentContainerStyle={{
+              flexGrow: 1,
+            }}
+            showsVerticalScrollIndicator={false}
+            data={Data}
+            keyExtractor={(item) => item.id}
+            ListEmptyComponent={
+              <EmptyCard
+                title="Add today's output data"
+                onPress={() => {
+                  navigation.navigate(SCREENS.MESS_OUTPUT_SCREEN);
+                }}
+              />
+            }
+            ItemSeparatorComponent={() => <View style={{ height: 10 }}></View>}
+            renderItem={(item) => {
+              return (
+                <InputOutputCard
+                  roomId={item.item.roomId}
+                  shift={item.item.shift}
+                  user={item.item.user}
+                  date={item.item.date}
+                  onPress={() => {
+                    navigation.navigate(SCREENS.MESS_OUTPUT_DETAILS_SCREEN, {
+                      roomId: item.item.roomId,
+                    });
+                  }}
+                />
+              );
+            }}
+          />
         </PagerViewPage>
       </PagerView>
     </View>
@@ -69,8 +153,12 @@ function PagerViewPage({ children, key }) {
       key={key}
       style={{
         flex: 1,
-        backgroundColor: THEME.COLORS.Foreground,
+        backgroundColor: THEME.COLORS.Background,
         borderRadius: 10,
+        // borderWidth: 1,
+        // borderColor: THEME.COLORS.Foreground,
+        paddingVertical: 10,
+        alignItems: 'center',
       }}
     >
       {children}

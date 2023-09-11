@@ -29,6 +29,10 @@ type RootStackParamList = {
         roomId: number;
       }
     | undefined;
+  [SCREENS.MESS_INPUT_DETAILS_SCREEN]: { roomId: number };
+  [SCREENS.MESS_INPUT_SCREEN]: undefined;
+  [SCREENS.MESS_OUTPUT_SCREEN]: undefined;
+  [SCREENS.MESS_OUTPUT_DETAILS_SCREEN]: { roomId: number };
 };
 
 type RoomScreenNavigationProp = CompositeNavigationProp<
@@ -41,9 +45,12 @@ type RoomScreenScreenProps = NativeStackScreenProps<
   SCREENS.ROOM_SCREEN
 >;
 
+type StackNavigationProps = NativeStackNavigationProp<RootStackParamList>;
+
 export {
   RoomScreenNavigationProp,
   RoomScreenScreenProps,
   RootStackParamList,
   RootTabParamList,
+  StackNavigationProps,
 };
